@@ -18,6 +18,23 @@ async function fetchArticleBySlug(slug: string) {
   return article ?? null;
 }
 
+async function fetchArticleSlugs() {
+  const response = await notion.dataSources.query({
+    data_source_id: DATA_SOURCE_ID,
+    page_size: 100,
+  });
+
+  return response.results.map((page: any) => {
+    const title =
+      page.properties.Title?.title?.[0]?.plain_text ?? "untitled";
+
+    return title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+  });
+}
+
 export async function getArticleBySlug(slug: string) {
   return unstable_cache(
     () => fetchArticleBySlug(slug),
@@ -27,3 +44,11 @@ export async function getArticleBySlug(slug: string) {
     }
   )();
 }
+
+export const getArticleSlugs = unstable_cache(
+  async () => fetchArticleSlugs(),
+  ["article-slugs"],
+  {
+    revalidate: 86400,
+  }
+);

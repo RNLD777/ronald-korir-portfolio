@@ -1,17 +1,18 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import { getWriting } from "@/lib/notion/writing";
-import { getArticleBySlug } from "@/lib/notion/get-article-by-slug";
+import { getArticleBySlug, getArticleSlugs } from "@/lib/notion/get-article-by-slug";
 import { getArticle } from "@/lib/notion/article";
 
 import { NotionRenderer } from "@/components/notion/renderer";
 
-export async function generateStaticParams() {
-  const writing = await getWriting();
+export const dynamicParams = false;
 
-  return writing.map((article) => ({
-    slug: article.slug,
+export async function generateStaticParams() {
+  const slugs = await getArticleSlugs();
+
+  return slugs.map((slug) => ({
+    slug,
   }));
 }
 
@@ -31,15 +32,16 @@ export default async function ArticlePage({
   const data = await getArticle(article.id);
 
   return (
-    <main className="container py-16">
+    <main className="mx-auto max-w-5xl px-6 py-16">
       {data.coverImage && (
-        <div className="relative mb-10 aspect-[16/8] overflow-hidden rounded-3xl">
+        <div className="mb-12 overflow-hidden rounded-2xl">
           <Image
             src={data.coverImage}
             alt={article.title}
-            fill
+            width={1600}
+            height={900}
+            className="h-auto w-full object-cover"
             priority
-            className="object-cover"
           />
         </div>
       )}
