@@ -1,42 +1,59 @@
 import { unstable_cache } from "next/cache";
+
 import { notion } from "./client";
 
-export const getArticle = unstable_cache(
-  async (pageId: string) => {
-    const page = await notion.pages.retrieve({
-      page_id: pageId,
-    });
+async function fetchArticle(pageId: string) {
+  const page = await notion.pages.retrieve({
+    page_id: pageId,
+  });
 
+  const blocks: any[] = [];
+
+  let cursor: string | undefined = undefined;
+
+  do {
     const response = await notion.blocks.children.list({
       block_id: pageId,
       page_size: 100,
+      start_cursor: cursor,
     });
 
-    const blocks = response.results as any[];
+    blocks.push(...response.results);
 
-    let coverImage: string | null = null;
+    cursor = response.has_more
+      ? response.next_cursor ?? undefined
+      : undefined;
+  } while (cursor);
 
-    // If the first block is an image, use it as the hero image
-    if (blocks.length > 0 && blocks[0].type === "image") {
-      const image = blocks[0];
+  let coverImage: string | null = null;
 
-      coverImage =
-        image.image.type === "external"
-          ? image.image.external.url
-          : image.image.file.url;
+  // Use the first image as the hero image.
+  if (blocks.length > 0 && blocks[0].type === "image") {
+    const image = blocks[0];
 
-      // Remove the first image so it doesn't appear twice
-      blocks.shift();
+    if (image.image.type === "external") {
+      coverImage = image.image.external.url;
+    } else if (image.image.type === "file") {
+      coverImage = image.image.file.url;
     }
 
-    return {
-      page,
-      coverImage,
-      blocks,
-    };
+    // Prevent the hero image from appearing again in the article.
+    blocks.shift();
+  }
+
+  return {
+    page,
+    coverImage,
+    blocks,
+  };
+}
+
+export const getArticle = unstable_cache(
+  async (pageId: string) => {
+    return fetchArticle(pageId);
   },
   ["article"],
   {
-    revalidate: 86400, // 24 hours
+    revalidate: 86400,
   }
 );
