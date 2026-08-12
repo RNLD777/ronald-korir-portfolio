@@ -25,8 +25,11 @@ export function SiteHeader() {
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
+
     onScroll()
+
     window.addEventListener('scroll', onScroll, { passive: true })
+
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
@@ -54,13 +57,17 @@ export function SiteHeader() {
           >
             RK
           </span>
-          <span className="text-sm font-medium tracking-tight">{site.name}</span>
+
+          <span className="text-sm font-medium tracking-tight">
+            {site.name}
+          </span>
         </Link>
 
         <nav aria-label="Main" className="hidden md:block">
           <ul className="flex items-center gap-1">
             {navLinks.map((link) => {
               const active = isActive(link.href)
+
               return (
                 <li key={link.href}>
                   <Link
@@ -77,9 +84,14 @@ export function SiteHeader() {
                       <motion.span
                         layoutId="nav-pill"
                         className="absolute inset-0 -z-10 rounded-full bg-muted"
-                        transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                        transition={{
+                          type: 'spring',
+                          stiffness: 380,
+                          damping: 32,
+                        }}
                       />
                     )}
+
                     {link.label}
                   </Link>
                 </li>
@@ -90,7 +102,10 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-1.5">
           <ThemeToggle />
+
+          {/* Desktop contact link */}
           <Button
+            nativeButton={false}
             size="sm"
             className="hidden rounded-full sm:inline-flex"
             render={<Link href="/contact" />}
@@ -112,14 +127,19 @@ export function SiteHeader() {
             >
               <MenuIcon aria-hidden="true" />
             </SheetTrigger>
+
             <SheetContent side="right" className="w-72">
               <SheetHeader>
-                <SheetTitle className="text-left">Navigation</SheetTitle>
+                <SheetTitle className="text-left">
+                  Navigation
+                </SheetTitle>
               </SheetHeader>
+
               <nav aria-label="Mobile" className="px-4">
                 <ul className="flex flex-col gap-1">
                   {navLinks.map((link) => {
                     const active = isActive(link.href)
+
                     return (
                       <li key={link.href}>
                         <Link
@@ -134,6 +154,7 @@ export function SiteHeader() {
                           )}
                         >
                           {link.label}
+
                           {active && (
                             <span
                               className="size-1.5 rounded-full bg-brand"
@@ -146,15 +167,24 @@ export function SiteHeader() {
                   })}
                 </ul>
               </nav>
+
               <div className="mt-auto flex flex-col gap-3 border-t border-border p-4">
+                {/* Mobile contact link */}
                 <Button
+                  nativeButton={false}
                   className="w-full rounded-full"
                   size="lg"
-                  render={<Link href="/contact" onClick={() => setOpen(false)} />}
+                  render={
+                    <Link
+                      href="/contact"
+                      onClick={() => setOpen(false)}
+                    />
+                  }
                 >
                   Get in touch
                   <ArrowUpRightIcon data-icon="inline-end" />
                 </Button>
+
                 <p className="text-xs text-muted-foreground">
                   {site.location} — {site.availability}
                 </p>

@@ -16,29 +16,47 @@ import type { WritingPiece } from '@/lib/site'
 
 type Filter = (typeof writingCategories)[number]
 
-
 export function WritingGallery({
   writing,
+  initialCategory,
 }: {
-  writing: WritingPiece[];
+  writing: WritingPiece[]
+  initialCategory?: string
 }) {
-  const [active, setActive] = React.useState<Filter>('All')
+  const initialFilter = React.useMemo(() => {
+    if (
+      initialCategory &&
+      writingCategories.includes(initialCategory as Filter)
+    ) {
+      return initialCategory as Filter
+    }
+
+    return 'All' as Filter
+  }, [initialCategory])
+
+  const [active, setActive] = React.useState<Filter>(initialFilter)
+
   const reduceMotion = useReducedMotion()
 
   const counts = React.useMemo(() => {
     const map = new Map<string, number>([['All', writing.length]])
+
     for (const piece of writing) {
-      map.set(piece.category, (map.get(piece.category) ?? 0) + 1)
+      map.set(
+        piece.category,
+        (map.get(piece.category) ?? 0) + 1,
+      )
     }
+
     return map
-  }, [])
+  }, [writing])
 
   const filtered = React.useMemo(
     () =>
       active === 'All'
         ? writing
         : writing.filter((piece) => piece.category === active),
-    [active],
+    [active, writing],
   )
 
   return (
@@ -51,15 +69,21 @@ export function WritingGallery({
             aria-label="Filter writing by category"
             value={[active]}
             onValueChange={(value) => {
-              // Base UI emits an array; ignore de-selection so one filter is always on.
               const next = value[0] as Filter | undefined
-              if (next) setActive(next)
+
+              if (next) {
+                setActive(next)
+              }
             }}
             className="flex-wrap"
           >
             {writingCategories.map((category) => (
-              <ToggleGroupItem key={category} value={category}>
+              <ToggleGroupItem
+                key={category}
+                value={category}
+              >
                 {category}
+
                 <span className="ml-1.5 text-xs text-muted-foreground tabular-nums">
                   {counts.get(category) ?? 0}
                 </span>
@@ -68,7 +92,10 @@ export function WritingGallery({
           </ToggleGroup>
         </div>
 
-        <p aria-live="polite" className="text-sm text-muted-foreground">
+        <p
+          aria-live="polite"
+          className="text-sm text-muted-foreground"
+        >
           Showing {filtered.length}{' '}
           {filtered.length === 1 ? 'piece' : 'pieces'}
           {active !== 'All' ? ` in ${active}` : ''}.
@@ -79,6 +106,7 @@ export function WritingGallery({
         <Empty>
           <EmptyHeader>
             <EmptyTitle>Nothing here yet</EmptyTitle>
+
             <EmptyDescription>
               There are no published pieces in this category at the moment.
             </EmptyDescription>
@@ -89,15 +117,33 @@ export function WritingGallery({
           layout={!reduceMotion}
           className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
-          <AnimatePresence mode="popLayout" initial={false}>
+          <AnimatePresence
+            mode="popLayout"
+            initial={false}
+          >
             {filtered.map((piece) => (
               <motion.li
                 key={piece.slug}
                 layout={!reduceMotion}
-                initial={reduceMotion ? undefined : { opacity: 0, scale: 0.97 }}
-                animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
-                exit={reduceMotion ? undefined : { opacity: 0, scale: 0.97 }}
-                transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                initial={
+                  reduceMotion
+                    ? undefined
+                    : { opacity: 0, scale: 0.97 }
+                }
+                animate={
+                  reduceMotion
+                    ? undefined
+                    : { opacity: 1, scale: 1 }
+                }
+                exit={
+                  reduceMotion
+                    ? undefined
+                    : { opacity: 0, scale: 0.97 }
+                }
+                transition={{
+                  duration: 0.28,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
               >
                 <WritingCard piece={piece} />
               </motion.li>

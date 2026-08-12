@@ -4,7 +4,13 @@ import { ArrowRightIcon, ArrowUpRightIcon } from 'lucide-react'
 import { RevealGroup, RevealItem } from '@/components/motion/reveal'
 import { Section, SectionHeading } from '@/components/section'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { disciplines } from '@/lib/site'
 
 export function FeaturedWork() {
@@ -13,7 +19,7 @@ export function FeaturedWork() {
       <SectionHeading
         eyebrow="Featured work"
         title="Ways I help teams communicate clearly"
-        description="From content writing and SEO to journalism and multimedia storytelling, each discipline strengthens the others."
+        description="From marketing and strategy to journalism, social media and storytelling, each discipline strengthens the others."
         action={
           <Button
             variant="outline"
@@ -37,22 +43,31 @@ export function FeaturedWork() {
                 <CardHeader className="p-6 pb-0">
                   <div className="flex items-start justify-between gap-4">
                     <span className="flex size-10 items-center justify-center rounded-lg bg-brand/10 text-brand ring-1 ring-brand/15 transition-colors duration-300 group-hover:bg-brand group-hover:text-brand-foreground">
-                      <discipline.icon className="size-[18px]" aria-hidden="true" />
+                      <discipline.icon
+                        className="size-[18px]"
+                        aria-hidden="true"
+                      />
                     </span>
+
                     <ArrowUpRightIcon
                       className="size-4 text-muted-foreground/50 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground"
                       aria-hidden="true"
                     />
                   </div>
+
                   <CardTitle className="mt-5 text-[1.0625rem] font-semibold tracking-tight">
                     {discipline.title}
                   </CardTitle>
                 </CardHeader>
+
                 <CardContent className="flex flex-col gap-5 p-6 pt-3">
                   <CardDescription className="leading-relaxed">
                     {discipline.description}
                   </CardDescription>
-                  <span className="eyebrow text-[0.6875rem]">{discipline.meta}</span>
+
+                  <span className="eyebrow text-[0.6875rem]">
+                    {discipline.meta}
+                  </span>
                 </CardContent>
               </Card>
             </Link>

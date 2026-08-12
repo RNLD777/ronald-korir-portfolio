@@ -12,8 +12,17 @@ export const metadata: Metadata = {
   alternates: { canonical: '/writing' },
 }
 
-export default async function WritingPage() {
+type WritingPageProps = {
+  searchParams: Promise<{
+    category?: string
+  }>
+}
+
+export default async function WritingPage({
+  searchParams,
+}: WritingPageProps) {
   const writing = await getWriting()
+  const params = await searchParams
 
   return (
     <>
@@ -24,7 +33,10 @@ export default async function WritingPage() {
       />
 
       <Section>
-        <WritingGallery writing={writing} />
+        <WritingGallery
+          writing={writing}
+          initialCategory={params.category}
+        />
       </Section>
 
       <CtaSection />

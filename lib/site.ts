@@ -44,7 +44,7 @@ export const navLinks = [
   { href: '/about', label: 'About' },
   { href: '/resume', label: 'Resume' },
   { href: '/writing', label: 'Writing' },
-  { href: '/projects', label: 'Projects' },
+  {  href: '/mindbook', label: 'Mindbook' },
   { href: '/contact', label: 'Contact' },
 ] as const
 
@@ -133,18 +133,10 @@ export type Discipline = {
 
 export const disciplines: Discipline[] = [
   {
-    slug: 'content-writing',
-    title: 'Content Writing',
+    slug: 'marketing-strategy',
+    title: 'Marketing & Strategy',
     description:
-      'SEO-first articles, website copy and long-form content written for clarity, credibility and conversions.',
-    icon: Target,
-    meta: 'Writing',
-  },
-  {
-    slug: 'digital-marketing',
-    title: 'Digital Marketing',
-    description:
-      'Content strategy, campaign planning, audience research and performance-focused communication.',
+      'SEO content, website copy, digital marketing, content strategy, campaign planning and audience-focused communication.',
     icon: Newspaper,
     meta: 'Marketing',
   },
@@ -152,23 +144,31 @@ export const disciplines: Discipline[] = [
     slug: 'journalism-news-reporting',
     title: 'Journalism & News Reporting',
     description:
-      'Reporting, interviewing, fact-checking and editorial storytelling grounded in research.',
+      'Reporting, interviewing, research, fact-checking and editorial storytelling grounded in accuracy and context.',
     icon: BookOpen,
     meta: 'Reporting',
   },
   {
-    slug: 'multimedia-storytelling',
-    title: 'Multimedia Storytelling',
+    slug: 'thought-leadership',
+    title: 'Thought Leadership',
     description:
-      'Photography, video, scripting and multimedia content production shaped for digital audiences.',
+      'Insight-driven articles and commentary that turn expertise, ideas and experience into useful perspectives.',
+    icon: Target,
+    meta: 'Insights',
+  },
+  {
+    slug: 'scripts',
+    title: 'Scripts',
+    description:
+      'Explainer, promotional, documentary and multimedia scripts built for clear storytelling and audience engagement.',
     icon: Mic,
-    meta: 'Multimedia',
+    meta: 'Scripting',
   },
   {
     slug: 'social-media',
     title: 'Social Media',
     description:
-      'Audience-focused content planning and messaging designed to connect across digital platforms.',
+      'Audience-focused content, platform messaging, campaign ideas and social storytelling designed to build engagement.',
     icon: Share2,
     meta: 'Social',
   },
@@ -176,16 +176,16 @@ export const disciplines: Discipline[] = [
     slug: 'creative-writing',
     title: 'Creative Writing',
     description:
-      'Clear, engaging storytelling that helps brands and organisations communicate with confidence.',
+      'Narrative writing that explores ideas, characters and stories with clarity, personality and imagination.',
     icon: Feather,
     meta: 'Narrative',
   },
 ]
 
 export const stats = [
-  { value: 'Coming Soon', label: 'Published work' },
-  { value: 'Coming Soon', label: 'Selected projects' },
-  { value: 'Remote & freelance', label: 'Availability' },
+  { value: '2024', label: 'Mass Communication graduate' },
+  { value: '6', label: 'Core writing disciplines' },
+  { value: 'Writing', label: 'Content & communications' },
   { value: 'Nairobi, Kenya', label: 'Based in' },
 ] as const
 
@@ -432,6 +432,7 @@ export type WritingPiece = {
   featured?: boolean
   image: string
   imageAlt: string
+  mindbookDate?: string
 }
 
 export const writingCategories: Array<'All' | WritingCategory> = [
