@@ -20,9 +20,14 @@ const CATEGORY_ORDER = [
   'Creative Writing',
 ] as const
 
-function getYearValue(year: string) {
-  const match = year.match(/\d{4}/)
-  return match ? Number(match[0]) : 0
+function getPublishedTime(piece: WritingPiece) {
+  if (!piece.mindbookDate) {
+    return 0
+  }
+
+  const time = new Date(piece.mindbookDate).getTime()
+
+  return Number.isNaN(time) ? 0 : time
 }
 
 function getLatestByCategory(writing: WritingPiece[]) {
@@ -30,7 +35,7 @@ function getLatestByCategory(writing: WritingPiece[]) {
     const articles = writing
       .filter((piece) => piece.category === category)
       .sort((a, b) => {
-        return getYearValue(b.year) - getYearValue(a.year)
+        return getPublishedTime(b) - getPublishedTime(a)
       })
 
     return articles[0] ?? null
@@ -50,7 +55,7 @@ export function MindbookTimeline({
   const sorted = React.useMemo(
     () =>
       [...featured].sort(
-        (a, b) => getYearValue(b.year) - getYearValue(a.year),
+        (a, b) => getPublishedTime(b) - getPublishedTime(a),
       ),
     [featured],
   )
