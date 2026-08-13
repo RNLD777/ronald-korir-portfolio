@@ -2,6 +2,10 @@ import { unstable_cache } from "next/cache";
 
 import { notion } from "./client";
 
+function getNotionImageUrl(blockId: string) {
+  return `/api/notion-image?blockId=${encodeURIComponent(blockId)}`;
+}
+
 async function fetchArticle(pageId: string) {
   const page = await notion.pages.retrieve({
     page_id: pageId,
@@ -27,17 +31,16 @@ async function fetchArticle(pageId: string) {
 
   let coverImage: string | null = null;
 
-  // Use the first image as the hero image.
   if (blocks.length > 0 && blocks[0].type === "image") {
     const image = blocks[0];
 
     if (image.image.type === "external") {
       coverImage = image.image.external.url;
     } else if (image.image.type === "file") {
-      coverImage = image.image.file.url;
+      coverImage = getNotionImageUrl(image.id);
     }
 
-    // Prevent the hero image from appearing again in the article.
+    // Remove hero image so it isn't displayed twice.
     blocks.shift();
   }
 

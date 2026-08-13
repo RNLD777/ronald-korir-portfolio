@@ -14,14 +14,10 @@ const MINDBOOK_CATEGORIES = [
   "Creative Writing",
 ] as const;
 
-/**
- * Gets the first image from a Notion page.
- *
- * Important:
- * Notion-hosted file URLs are temporary signed URLs.
- * We therefore fetch the current URL whenever this function runs
- * rather than permanently storing the URL itself.
- */
+function getNotionImageUrl(blockId: string) {
+  return `/api/notion-image?blockId=${encodeURIComponent(blockId)}`;
+}
+
 async function getFirstImage(pageId: string) {
   let cursor: string | undefined = undefined;
 
@@ -37,12 +33,15 @@ async function getFirstImage(pageId: string) {
     ) as any;
 
     if (image) {
+      // External images such as Substack images can keep their
+      // original URL.
       if (image.image.type === "external") {
         return image.image.external.url;
       }
 
+      // Notion-hosted images go through our permanent API route.
       if (image.image.type === "file") {
-        return image.image.file.url;
+        return getNotionImageUrl(image.id);
       }
 
       return "/placeholder.jpg";

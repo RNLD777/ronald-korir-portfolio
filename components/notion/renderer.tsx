@@ -52,6 +52,18 @@ function renderRichText(richText: any[]) {
   });
 }
 
+function getImageSrc(block: any) {
+  if (block.image.type === "external") {
+    return block.image.external.url;
+  }
+
+  if (block.image.type === "file") {
+    return `/api/notion-image?blockId=${encodeURIComponent(block.id)}`;
+  }
+
+  return "/placeholder.jpg";
+}
+
 export function NotionRenderer({ blocks }: Props) {
   return (
     <article
@@ -152,10 +164,7 @@ export function NotionRenderer({ blocks }: Props) {
             );
 
           case "image": {
-            const src =
-              block.image.type === "external"
-                ? block.image.external.url
-                : block.image.file.url;
+            const src = getImageSrc(block);
 
             return (
               <div key={block.id} className="my-8">
@@ -165,6 +174,7 @@ export function NotionRenderer({ blocks }: Props) {
                   width={1200}
                   height={700}
                   className="h-auto w-full rounded-xl"
+                  unoptimized
                 />
               </div>
             );
