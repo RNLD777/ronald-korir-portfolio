@@ -26,7 +26,7 @@ export default function AboutPage() {
       <PageHeader
         eyebrow="About"
         title="Clear communication, built with strategy and care."
-        description="I am a Mass Communication graduate focused on digital marketing, SEO writing, content strategy, copywriting and multimedia storytelling. I help brands and organisations communicate clearly through content that is useful, credible and results-focused."
+        description="I am a Mass Media and Communication graduate focused on digital marketing, SEO writing, content strategy, copywriting and multimedia storytelling. I help brands and organisations communicate clearly through content that is useful, credible and results-focused."
       />
 
       <Section>

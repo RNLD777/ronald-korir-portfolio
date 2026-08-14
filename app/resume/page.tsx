@@ -19,7 +19,7 @@ import {
 export const metadata: Metadata = {
   title: 'Resume',
   description:
-    'Resume of Ronald Korir — BA Mass Communication (Mount Kenya University), Multimedia Journalist Intern at Kenya News Agency, with skills across SEO, copywriting, content strategy and digital marketing.',
+    'Resume of Ronald Korir — BA Mass Media and Communication (Mount Kenya University), Multimedia Journalist Intern at Kenya News Agency, with skills across SEO, copywriting, content strategy and digital marketing.',
   alternates: { canonical: '/resume' },
 }
 
@@ -29,7 +29,7 @@ export default function ResumePage() {
       <PageHeader
         eyebrow="Resume"
         title="Ronald Korir"
-        description="Mass Communication graduate focused on digital marketing, SEO writing, content strategy, copywriting and multimedia storytelling."
+        description="Mass Media and Communication graduate focused on digital marketing, SEO writing, content strategy, copywriting and multimedia storytelling."
       >
         <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center">
           <a

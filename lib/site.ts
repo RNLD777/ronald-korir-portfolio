@@ -31,7 +31,7 @@ export const site = {
   intro:
     'I help brands and organizations communicate clearly through SEO content, digital marketing, and multimedia storytelling.',
   location: 'Nairobi, Kenya',
-  email: 'ronaldkiplangat8690@gmail.com',
+  email: 'korirronald005@gmail.com',
   phone: '+254 720 124 867',
   url: 'https://www.linkedin.com/in/ronald-korir-63451b2b4',
   resumeFile: '/ronald-korir-resume.pdf',
@@ -183,9 +183,9 @@ export const disciplines: Discipline[] = [
 ]
 
 export const stats = [
-  { value: '2024', label: 'Mass Communication graduate' },
+  { value: '2024', label: 'Mass Media and Communication graduate' },
   { value: '6', label: 'Core writing disciplines' },
-  { value: 'Writing', label: 'Content & communications' },
+  { value: 'Bespoke Writing', label: 'Content & communications' },
   { value: 'Nairobi, Kenya', label: 'Based in' },
 ] as const
 
@@ -205,7 +205,7 @@ export type TimelineEntry = {
 export const timeline: TimelineEntry[] = [
   {
     period: '2024',
-    title: 'Bachelor of Arts in Mass Communication',
+    title: 'Bachelor of Arts in Mass Media and Communication',
     org: 'Mount Kenya University',
     location: 'Thika, Kenya',
     description:
