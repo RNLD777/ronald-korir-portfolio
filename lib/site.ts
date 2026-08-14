@@ -183,7 +183,7 @@ export const disciplines: Discipline[] = [
 ]
 
 export const stats = [
-  { value: '2024', label: 'Mass Media and Communication graduate' },
+  { value: 'Mass Media and Communication graduate', label: '2024' },
   { value: '6', label: 'Core writing disciplines' },
   { value: 'Bespoke Writing', label: 'Content & communications' },
   { value: 'Nairobi, Kenya', label: 'Based in' },
