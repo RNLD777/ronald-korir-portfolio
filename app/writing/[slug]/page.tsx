@@ -6,7 +6,7 @@ import { getArticle } from "@/lib/notion/article";
 
 import { NotionRenderer } from "@/components/notion/renderer";
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const slugs = await getArticleSlugs();
