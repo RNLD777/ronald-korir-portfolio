@@ -7,8 +7,8 @@ const DATA_SOURCE_ID = "23ffc6b9-7792-490e-b8ec-100c402df5d6";
 
 const MINDBOOK_CATEGORIES = [
   "Marketing & Strategy",
-  "Journalism & News Reporting",
-  "Thought Leadership",
+  "Journalism & Reporting",
+  "Analysis & Commentary",
   "Scripts",
   "Social Media",
   "Creative Writing",

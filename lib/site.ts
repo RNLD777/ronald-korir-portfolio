@@ -44,11 +44,13 @@ export const navLinks = [
   { href: '/about', label: 'About' },
   { href: '/resume', label: 'Resume' },
   { href: '/writing', label: 'Writing' },
-  {  href: '/mindbook', label: 'Mindbook' },
+  { href: '/mindbook', label: 'Mindbook' },
   { href: '/contact', label: 'Contact' },
 ] as const
 
-export type IconComponent = LucideIcon | ComponentType<SVGProps<SVGSVGElement>>
+export type IconComponent =
+  | LucideIcon
+  | ComponentType<SVGProps<SVGSVGElement>>
 
 export type SocialLink = {
   label: string
@@ -109,14 +111,24 @@ export const socialLinks: SocialLink[] = [
 ]
 
 export const contactChannels = [
-  { label: 'Email', value: site.email, href: `mailto:${site.email}`, icon: Mail },
+  {
+    label: 'Email',
+    value: site.email,
+    href: `mailto:${site.email}`,
+    icon: Mail,
+  },
   {
     label: 'Phone',
     value: site.phone,
     href: `tel:${site.phone.replace(/\s/g, '')}`,
     icon: Phone,
   },
-  { label: 'Based in', value: site.location, href: null, icon: MapPin },
+  {
+    label: 'Based in',
+    value: site.location,
+    href: null,
+    icon: MapPin,
+  },
 ] as const
 
 /* ------------------------------------------------------------------ */
@@ -141,20 +153,20 @@ export const disciplines: Discipline[] = [
     meta: 'Marketing',
   },
   {
-    slug: 'journalism-news-reporting',
-    title: 'Journalism & News Reporting',
+    slug: 'journalism-reporting',
+    title: 'Journalism & Reporting',
     description:
       'Reporting, interviewing, research, fact-checking and editorial storytelling grounded in accuracy and context.',
     icon: BookOpen,
     meta: 'Reporting',
   },
   {
-    slug: 'thought-leadership',
-    title: 'Thought Leadership',
+    slug: 'analysis-commentary',
+    title: 'Analysis & Commentary',
     description:
-      'Insight-driven articles and commentary that turn expertise, ideas and experience into useful perspectives.',
+      'Analytical writing and personal commentary exploring ideas, experiences, social issues and the world around us.',
     icon: Target,
-    meta: 'Insights',
+    meta: 'Analysis',
   },
   {
     slug: 'scripts',
@@ -210,7 +222,12 @@ export const timeline: TimelineEntry[] = [
     location: 'Thika, Kenya',
     description:
       'Graduated with a focus on multimedia journalism, public relations, digital communication, media law and ethics, and broadcast production.',
-    tags: ['Mass Communication', 'Electronic Media', 'Multimedia', 'Public Relations'],
+    tags: [
+      'Mass Communication',
+      'Electronic Media',
+      'Multimedia',
+      'Public Relations',
+    ],
   },
   {
     period: 'May – July 2024',
@@ -228,7 +245,12 @@ export const timeline: TimelineEntry[] = [
     location: 'Nakuru, Kenya',
     description:
       'Assisted customers with product selection, processed sales transactions, managed inventory and stock replenishment, maintained accurate stock records and supported daily business operations.',
-    tags: ['Customer Service', 'Sales', 'Retail Operations', 'Inventory Management'],
+    tags: [
+      'Customer Service',
+      'Sales',
+      'Retail Operations',
+      'Inventory Management',
+    ],
   },
   {
     period: 'Present',
@@ -318,11 +340,21 @@ export type SkillGroup = {
 export const skillGroups: SkillGroup[] = [
   {
     title: 'Marketing',
-    skills: ['SEO', 'Content Strategy', 'Digital Marketing', 'Campaign Planning'],
+    skills: [
+      'SEO',
+      'Content Strategy',
+      'Digital Marketing',
+      'Campaign Planning',
+    ],
   },
   {
     title: 'Writing',
-    skills: ['Content Writing', 'SEO Writing', 'Creative Writing', 'Editing'],
+    skills: [
+      'Content Writing',
+      'SEO Writing',
+      'Creative Writing',
+      'Editing',
+    ],
   },
   {
     title: 'Journalism',
@@ -412,16 +444,15 @@ export const projectCategories = [
 
 export type WritingCategory =
   | 'Marketing & Strategy'
-  | 'Journalism & News Reporting'
-  | 'Thought Leadership'
-  | 'Scripts'
   | 'Social Media'
+  | 'Journalism & Reporting'
+  | 'Analysis & Commentary'
+  | 'Scripts'
   | 'Creative Writing'
 
 export type WritingPiece = {
   id: string
   slug: string
-
   title: string
   category: WritingCategory
   publication: string
@@ -438,63 +469,64 @@ export type WritingPiece = {
 export const writingCategories: Array<'All' | WritingCategory> = [
   'All',
   'Marketing & Strategy',
-  'Journalism & News Reporting',
-  'Thought Leadership',
-  'Scripts',
   'Social Media',
+  'Journalism & Reporting',
+  'Analysis & Commentary',
+  'Scripts',
   'Creative Writing',
 ]
 
 export const writing: WritingPiece[] = [
   {
-    id: "coming-soon-marketing",
-    slug: "coming-soon-marketing",
-    title: "Coming Soon",
-    category: "Marketing & Strategy",
-    publication: "Portfolio",
-    year: "2026",
-    readTime: "Coming Soon",
+    id: 'coming-soon-marketing',
+    slug: 'coming-soon-marketing',
+    title: 'Coming Soon',
+    category: 'Marketing & Strategy',
+    publication: 'Portfolio',
+    year: '2026',
+    readTime: 'Coming Soon',
     excerpt:
-      "Selected writing samples in marketing and strategy will be published here as they are ready to share.",
-    href: "#",
+      'Selected writing samples in marketing and strategy will be published here as they are ready to share.',
+    href: '#',
     featured: true,
-    image: "/projects/saas-content-engine.png",
+    image: '/projects/saas-content-engine.png',
     imageAlt:
-      "Portfolio preview showing a content strategy and marketing case study",
+      'Portfolio preview showing a content strategy and marketing case study',
   },
   {
-    id: "coming-soon-journalism",
-    slug: "coming-soon-journalism",
-    title: "Coming Soon",
-    category: "Journalism & News Reporting",
-    publication: "Portfolio",
-    year: "2026",
-    readTime: "Coming Soon",
+    id: 'coming-soon-journalism',
+    slug: 'coming-soon-journalism',
+    title: 'Coming Soon',
+    category: 'Journalism & Reporting',
+    publication: 'Portfolio',
+    year: '2026',
+    readTime: 'Coming Soon',
     excerpt:
-      "Reported work and editorial storytelling samples will be added soon.",
-    href: "#",
+      'Reported work and editorial storytelling samples will be added soon.',
+    href: '#',
     featured: false,
-    image: "/projects/ngo-impact-report.png",
+    image: '/projects/ngo-impact-report.png',
     imageAlt:
-      "Portfolio preview showing a reporting and impact-focused story layout",
+      'Portfolio preview showing a reporting and impact-focused story layout',
   },
   {
-    id: "coming-soon-social",
-    slug: "coming-soon-social",
-    title: "Coming Soon",
-    category: "Social Media",
-    publication: "Portfolio",
-    year: "2026",
-    readTime: "Coming Soon",
+    id: 'coming-soon-social',
+    slug: 'coming-soon-social',
+    title: 'Coming Soon',
+    category: 'Social Media',
+    publication: 'Portfolio',
+    year: '2026',
+    readTime: 'Coming Soon',
     excerpt:
-      "Social and campaign writing examples will be shared here once available.",
-    href: "#",
+      'Social and campaign writing examples will be shared here once available.',
+    href: '#',
     featured: false,
-    image: "/projects/always-on-social-system.png",
+    image: '/projects/always-on-social-system.png',
     imageAlt:
-      "Portfolio preview showing a social content and digital campaign concept",
+      'Portfolio preview showing a social content and digital campaign concept',
   },
-];
+]
+
 export const services = [
   {
     title: 'Content Writing',

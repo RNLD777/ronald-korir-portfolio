@@ -8,7 +8,7 @@ import { getWriting } from '@/lib/notion/writing'
 export const metadata: Metadata = {
   title: 'Writing Portfolio',
   description:
-    'Selected writing by Ronald Korir across marketing and strategy, journalism, thought leadership, scripts, social media and creative writing.',
+  'Selected writing by Ronald Korir across marketing and strategy, journalism, analysis and commentary, scripts, social media and creative writing.',
   alternates: { canonical: '/writing' },
 }
 

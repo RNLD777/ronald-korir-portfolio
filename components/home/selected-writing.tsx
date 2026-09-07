@@ -19,7 +19,7 @@ export function SelectedWriting({
       <SectionHeading
         eyebrow="Selected writing"
         title="A few pieces worth reading first"
-        description="Reported features, strategy essays and thought leadership — a cross-section of the range."
+        description="Reported features, strategy essays and analysis — a cross-section of the range."
         action={
           <Button
             variant="outline"

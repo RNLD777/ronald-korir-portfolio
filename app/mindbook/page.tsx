@@ -11,7 +11,7 @@ import { getMindbook } from '@/lib/notion/writing'
 export const metadata: Metadata = {
   title: 'Mindbook',
   description:
-    'A record of what Ronald Korir has been thinking, learning and writing across marketing, journalism, thought leadership, scripts, social media and creative writing.',
+    'A record of what Ronald Korir has been thinking, learning and writing across marketing, journalism, analysis, scripts, social media and creative writing.',
   alternates: { canonical: '/mindbook' },
 }
 

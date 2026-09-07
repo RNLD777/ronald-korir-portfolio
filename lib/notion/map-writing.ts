@@ -1,4 +1,35 @@
-import type { WritingPiece } from "@/lib/site";
+import type { WritingCategory, WritingPiece } from "@/lib/site";
+
+const CATEGORY_MAP: Record<string, WritingCategory> = {
+  "📈 Marketing & Strategy": "Marketing & Strategy",
+  "✍️ Creative Writing": "Creative Writing",
+  "📰 Journalism & Reporting": "Journalism & Reporting",
+  "📱 Social Media": "Social Media",
+  "💡 Analysis & Commentary": "Analysis & Commentary",
+  "🎬 Scripts": "Scripts",
+};
+
+function getCategory(page: any): WritingCategory {
+  const keywords = propsToKeywords(page.properties?.Keywords);
+
+  for (const keyword of keywords) {
+    const category = CATEGORY_MAP[keyword];
+
+    if (category) {
+      return category;
+    }
+  }
+
+  return "Creative Writing";
+}
+
+function propsToKeywords(property: any): string[] {
+  return (
+    property?.multi_select
+      ?.map((option: { name?: string }) => option.name)
+      .filter((name: string | undefined): name is string => Boolean(name)) ?? []
+  );
+}
 
 export function mapWriting(page: any): WritingPiece {
   const props = page.properties;
@@ -13,9 +44,7 @@ export function mapWriting(page: any): WritingPiece {
 
     title: props.Title?.title?.[0]?.plain_text ?? "Untitled",
 
-    category:
-      props.Keywords?.multi_select?.[0]?.name?.replace(/^.+?\s/, "") ??
-      "Creative Writing",
+    category: getCategory(page),
 
     publication: "Portfolio",
 

@@ -13,8 +13,8 @@ type MindbookTimelineProps = {
 
 const CATEGORY_ORDER = [
   'Marketing & Strategy',
-  'Journalism & News Reporting',
-  'Thought Leadership',
+  'Journalism & Reporting',
+  'Analysis & Commentary',
   'Scripts',
   'Social Media',
   'Creative Writing',
