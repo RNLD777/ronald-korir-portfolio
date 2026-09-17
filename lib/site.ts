@@ -31,7 +31,7 @@ export const site = {
   intro:
     'I help brands and organizations communicate clearly through SEO content, digital marketing, and multimedia storytelling.',
   location: 'Nairobi, Kenya',
-  email: 'korirronald005@gmail.com',
+  email: 'korirronald.work@gmail.com',
   phone: '+254 720 124 867',
   url: 'https://www.linkedin.com/in/ronald-korir-63451b2b4',
   resumeFile: '/ronald-korir-resume.pdf',
