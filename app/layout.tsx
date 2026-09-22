@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   generator: 'v0.app',
   keywords: [
     'Ronald Korir',
-    'content strategist',
+    'content writer',
     'copywriter',
     'multimedia journalist',
     'communications graduate',

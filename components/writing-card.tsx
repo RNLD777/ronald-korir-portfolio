@@ -53,7 +53,7 @@ export function WritingCard({
 
         <CardTitle className="mt-4 text-lg leading-snug font-semibold tracking-tight text-balance">
           <Link
-            href={`/writing/${piece.slug}`}
+            href={`/projects/${piece.slug}`}
             className="outline-none after:absolute after:inset-0 after:rounded-xl focus-visible:after:ring-3 focus-visible:after:ring-ring/50"
           >
             <span className="relative">{piece.title}</span>

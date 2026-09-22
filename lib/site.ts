@@ -25,11 +25,9 @@ export const site = {
     'Content Writer',
     'Digital Marketer',
     'Multimedia Journalist',
-    'SEO Content Specialist',
-    'Communications Professional',
   ],
   intro:
-    'I help brands and organizations communicate clearly through SEO content, digital marketing, and multimedia storytelling.',
+    'I help brands and organizations communicate clearly through content, digital marketing, and multimedia storytelling.',
   location: 'Nairobi, Kenya',
   email: 'korirronald.work@gmail.com',
   phone: '+254 720 124 867',
@@ -43,7 +41,7 @@ export const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/resume', label: 'Resume' },
-  { href: '/writing', label: 'Writing' },
+  { href: '/projects', label: 'Projects' },
   { href: '/mindbook', label: 'Mindbook' },
   { href: '/contact', label: 'Contact' },
 ] as const
@@ -132,7 +130,7 @@ export const contactChannels = [
 ] as const
 
 /* ------------------------------------------------------------------ */
-/* Featured work — the six disciplines shown on the homepage           */
+/* Featured work — the six project categories shown on the homepage   */
 /* ------------------------------------------------------------------ */
 
 export type Discipline = {
@@ -196,13 +194,13 @@ export const disciplines: Discipline[] = [
 
 export const stats = [
   { value: 'Mass Media and Communication graduate', label: '2024' },
-  { value: '6', label: 'Core writing disciplines' },
+  { value: '6', label: 'Project Categories' },
   { value: 'Bespoke Writing', label: 'Content & communications' },
   { value: 'Nairobi, Kenya', label: 'Based in' },
 ] as const
 
 /* ------------------------------------------------------------------ */
-/* About — timeline                                                    */
+/* About — timeline                                                   */
 /* ------------------------------------------------------------------ */
 
 export type TimelineEntry = {
@@ -277,9 +275,9 @@ export const values = [
     icon: Newspaper,
   },
   {
-    title: 'Strategy with execution',
+    title: 'Practical strategy',
     description:
-      'I build content plans that are practical, useful and easy for teams to carry forward consistently.',
+      'I develop content ideas and plans that are practical, useful and grounded in audience needs.',
     icon: Layers,
   },
   {
@@ -291,7 +289,7 @@ export const values = [
 ] as const
 
 /* ------------------------------------------------------------------ */
-/* Resume                                                              */
+/* Resume                                                             */
 /* ------------------------------------------------------------------ */
 
 export const education = [
@@ -312,7 +310,7 @@ export const experience = [
     role: 'Sales & Operations Associate',
     company: 'Mwananchi Supplies and Hardware',
     period: 'January 2025 – Present',
-    location: 'Nakuru,Kenya',
+    location: 'Nakuru, Kenya',
     details: [
       'Assisted customers with product selection and processed sales transactions.',
       'Managed inventory and stock replenishment while maintaining accurate stock records.',
@@ -371,7 +369,7 @@ export const skillGroups: SkillGroup[] = [
       'WordPress',
       'Communication',
       'Customer Service',
-      'Project Management',
+      'Project Coordination',
       'Business Operations',
     ],
   },
@@ -386,7 +384,7 @@ export const languages = [
 ] as const
 
 /* ------------------------------------------------------------------ */
-/* Projects                                                            */
+/* Projects                                                           */
 /* ------------------------------------------------------------------ */
 
 export type Project = {
@@ -439,7 +437,7 @@ export const projectCategories = [
 ]
 
 /* ------------------------------------------------------------------ */
-/* Writing portfolio                                                   */
+/* Projects                                                           */
 /* ------------------------------------------------------------------ */
 
 export type WritingCategory =

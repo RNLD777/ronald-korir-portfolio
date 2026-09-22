@@ -38,9 +38,9 @@ export default async function MindbookPage() {
             nativeButton={false}
             variant="outline"
             className="mt-7 rounded-full"
-            render={<Link href="/writing" />}
+            render={<Link href="/projects" />}
           >
-            Explore all my writing
+            Explore all my work
             <ArrowRightIcon data-icon="inline-end" />
           </Button>
         </div>

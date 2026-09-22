@@ -11,7 +11,7 @@ import { getWriting } from '@/lib/notion/writing'
 import { site } from '@/lib/site'
 
 export const metadata: Metadata = {
-  title: `${site.name} — Content Strategist & Multimedia Journalist`,
+  title: `${site.name} —  Content Writer, Digital Marketer & Multimedia Journalist`,
   description: site.intro,
   alternates: { canonical: '/' },
 }

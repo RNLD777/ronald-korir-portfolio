@@ -16,7 +16,7 @@ import { languages, site, values } from '@/lib/site'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Ronald Korir is a communications graduate, content strategist and multimedia journalist based in Nairobi, Kenya — trained in the newsroom, working across marketing, digital communications and storytelling.',
+    'Ronald Korir is a communications graduate, content writer, digital marketer and multimedia journalist based in Nairobi, Kenya — trained in the newsroom, working across marketing, digital communications and storytelling.',
   alternates: { canonical: '/about' },
 }
 
@@ -79,7 +79,7 @@ export default function AboutPage() {
                 <p className="leading-relaxed text-muted-foreground">
                   I&apos;m looking for opportunities where I can put my
                   writing, communication and creative skills to practical use —
-                  whether that&apos;s in content, communications, marketing,
+                  whether that&apos;s in content writing, communications, marketing,
                   journalism or digital media.
                 </p>
 

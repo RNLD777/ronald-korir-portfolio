@@ -12,21 +12,21 @@ export function SelectedWriting({
 }: {
   writing: WritingPiece[]
 }) {
-  const featured = writing.filter((piece) => piece.featured).slice(0, 3)
+  const featured = writing.filter((piece) => piece.featured).slice(0, 6)
 
   return (
     <Section bordered>
       <SectionHeading
-        eyebrow="Selected writing"
-        title="A few pieces worth reading first"
-        description="Reported features, strategy essays and analysis — a cross-section of the range."
+        eyebrow="Featured Projects"
+        title="A few projects worth exploring first"
+        description="A selection of content, marketing, journalism and analysis work that shows the range of my approach."
         action={
           <Button
             variant="outline"
             className="rounded-full"
-            render={<Link href="/writing" />}
+            render={<Link href="/projects" />}
           >
-            All writing
+            All Projects
             <ArrowRightIcon data-icon="inline-end" />
           </Button>
         }

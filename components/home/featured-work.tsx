@@ -17,16 +17,16 @@ export function FeaturedWork() {
   return (
     <Section id="featured-work" bordered>
       <SectionHeading
-        eyebrow="Featured work"
-        title="Ways I help teams communicate clearly"
-        description="From marketing and strategy to journalism, social media and storytelling, each discipline strengthens the others."
+        eyebrow="Project Categories"
+        title="Different ways I approach communication"
+        description="From marketing and strategy to journalism, social media and storytelling, each category represents a different part of my communication work."
         action={
           <Button
             variant="outline"
             className="rounded-full"
-            render={<Link href="/writing" />}
+            render={<Link href="/projects" />}
           >
-            Browse all writing
+            Browse all projects
             <ArrowRightIcon data-icon="inline-end" />
           </Button>
         }
@@ -36,7 +36,7 @@ export function FeaturedWork() {
         {disciplines.map((discipline) => (
           <RevealItem key={discipline.slug} as="article">
             <Link
-              href={`/writing?category=${encodeURIComponent(discipline.title)}`}
+              href={`/projects?category=${encodeURIComponent(discipline.title)}`}
               className="group block h-full rounded-xl outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
             >
               <Card className="h-full gap-0 py-0 transition-[transform,box-shadow] duration-300 ease-out group-hover:-translate-y-1 group-hover:shadow-lg group-hover:shadow-foreground/5">

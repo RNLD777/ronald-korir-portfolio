@@ -88,17 +88,22 @@ export function Hero() {
               <Button
                 size="lg"
                 className="h-11 rounded-full px-6 text-[0.9375rem]"
-                render={<Link href="/writing" />}
+                render={<Link href="/projects" />}
               >
-                View Portfolio
+                View Projects
                 <ArrowRightIcon data-icon="inline-end" />
               </Button>
+
               <Button
                 size="lg"
                 variant="outline"
                 className="h-11 rounded-full px-6 text-[0.9375rem]"
                 render={
-                  <a href={site.resumeFile} download aria-label="Download resume as PDF" />
+                  <a
+                    href={site.resumeFile}
+                    download
+                    aria-label="Download resume as PDF"
+                  />
                 }
               >
                 <DownloadIcon data-icon="inline-start" />
@@ -121,20 +126,27 @@ export function Hero() {
               : {
                   initial: { opacity: 0, scale: 0.96, y: 20 },
                   animate: { opacity: 1, scale: 1, y: 0 },
-                  transition: { duration: 0.9, ease: easeOutExpo, delay: 0.1 },
+                  transition: {
+                    duration: 0.9,
+                    ease: easeOutExpo,
+                    delay: 0.1,
+                  },
                 })}
             className="relative mx-auto w-full max-w-sm lg:mx-0 lg:w-[22rem]"
           >
             <div className="relative aspect-4/5 overflow-hidden rounded-2xl bg-muted ring-1 ring-foreground/10">
-            <img
-  src="/ronald-korir-portrait.jpg"
-  alt="Ronald Korir"
-  className="absolute inset-0 h-full w-full object-cover"
-/>
+              <img
+                src="/ronald-korir-portrait.jpg"
+                alt="Ronald Korir"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
             </div>
+
             {/* Signature caption card, offset like an editorial credit line. */}
             <div className="absolute -bottom-5 -left-4 rounded-xl border border-border bg-card/95 px-4 py-3 shadow-sm backdrop-blur-sm sm:-left-6">
-              <p className="font-serif text-lg leading-none italic">Ronald Korir</p>
+              <p className="font-serif text-lg leading-none italic">
+                Ronald Korir
+              </p>
               <p className="mt-1.5 text-xs text-muted-foreground">
                 BA Mass Media and Communication
               </p>
