@@ -33,13 +33,10 @@ async function getFirstImage(pageId: string) {
     ) as any;
 
     if (image) {
-      // External images such as Substack images can keep their
-      // original URL.
       if (image.image.type === "external") {
         return image.image.external.url;
       }
 
-      // Notion-hosted images go through our permanent API route.
       if (image.image.type === "file") {
         return getNotionImageUrl(image.id);
       }
@@ -64,9 +61,7 @@ async function fetchWriting() {
   const articles = await Promise.all(
     response.results.map(async (page: any) => {
       const article = mapWriting(page);
-
       article.image = await getFirstImage(page.id);
-
       return article;
     })
   );
@@ -150,7 +145,7 @@ export const getWriting = unstable_cache(
   async () => {
     return fetchWriting();
   },
-  ["writing"],
+  ["writing-v2"],
   {
     revalidate: 86400,
   }
