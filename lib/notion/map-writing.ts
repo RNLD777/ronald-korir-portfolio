@@ -7,6 +7,7 @@ const CATEGORY_MAP: Record<string, WritingCategory> = {
   "📱 Social Media": "Social Media",
   "💡 Analysis & Commentary": "Analysis & Commentary",
   "🎬 Scripts": "Scripts",
+  "💻 Web Development": "Web Development",
 };
 
 function getCategory(page: any): WritingCategory {
