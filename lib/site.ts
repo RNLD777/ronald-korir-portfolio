@@ -455,6 +455,7 @@ export type WritingCategory =
   | 'Analysis & Commentary'
   | 'Scripts'
   | 'Creative Writing'
+  | 'Web Development'
 
 export type WritingPiece = {
   id: string
@@ -480,6 +481,7 @@ export const writingCategories: Array<'All' | WritingCategory> = [
   'Analysis & Commentary',
   'Scripts',
   'Creative Writing',
+  'Web Development',
 ]
 
 export const writing: WritingPiece[] = [
