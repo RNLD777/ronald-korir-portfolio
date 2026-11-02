@@ -183,6 +183,14 @@ export const disciplines: Discipline[] = [
     meta: 'Social',
   },
   {
+    slug: 'web-development',
+    title: 'Web Development',
+    description:
+      'Designing and building responsive websites and digital experiences for brands, businesses and organisations.',
+    icon: Globe2,
+    meta: 'Development',
+  },
+  {
     slug: 'creative-writing',
     title: 'Creative Writing',
     description:
@@ -194,7 +202,7 @@ export const disciplines: Discipline[] = [
 
 export const stats = [
   { value: 'Mass Media and Communication graduate', label: '2024' },
-  { value: '6', label: 'Project Categories' },
+  { value: '7', label: 'Project Categories' },
   { value: 'Bespoke Writing', label: 'Content & communications' },
   { value: 'Nairobi, Kenya', label: 'Based in' },
 ] as const
