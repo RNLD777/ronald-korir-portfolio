@@ -550,6 +550,11 @@ export const services = [
       'Reporting, interviewing, fact-checking and editorial storytelling that stays grounded in research.',
   },
   {
+    title: 'Web Development',
+    description:
+      'Responsive websites and digital experiences built for brands, businesses and organisations.',
+  },
+  {
     title: 'Multimedia Storytelling',
     description:
       'Photography, video, scripting and multimedia content production for digital platforms.',
