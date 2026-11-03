@@ -38,9 +38,9 @@ async function fetchArticleSlugs() {
 export async function getArticleBySlug(slug: string) {
   return unstable_cache(
     () => fetchArticleBySlug(slug),
-    ["article-by-slug", slug],
+    ["article-by-slug-v2", slug],
     {
-      revalidate: 86400,
+      revalidate: 300,
     }
   )();
 }
