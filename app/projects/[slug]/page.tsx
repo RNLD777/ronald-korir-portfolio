@@ -70,7 +70,9 @@ export default async function ProjectPage({
           rel="noopener noreferrer"
           className="font-medium text-brand hover:underline"
         >
-          Read the original article →
+          {article.category === "Web Development"
+            ? "Visit the live project →"
+            : "Read the original article →"}
         </a>
       </div>
     </main>
