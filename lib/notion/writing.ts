@@ -145,9 +145,9 @@ export const getWriting = unstable_cache(
   async () => {
     return fetchWriting();
   },
-  ["writing-v2"],
+  ["writing-v3"],
   {
-    revalidate: 86400,
+    revalidate: 300,
   }
 );
 
