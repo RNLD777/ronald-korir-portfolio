@@ -32,10 +32,14 @@ export function SelectedWriting({
         }
       />
 
-      <RevealGroup className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {featured.map((piece) => (
-          <RevealItem key={piece.slug} as="article" className="h-full">
-            <WritingCard piece={piece} />
+      <RevealGroup className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+        {featured.map((piece, index) => (
+          <RevealItem
+            key={piece.slug}
+            as="article"
+            className={index === 0 ? 'col-span-2 h-full sm:col-span-1' : 'h-full'}
+          >
+            <WritingCard piece={piece} compact={index !== 0} />
           </RevealItem>
         ))}
       </RevealGroup>
