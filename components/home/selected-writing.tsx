@@ -12,7 +12,7 @@ export function SelectedWriting({
 }: {
   writing: WritingPiece[]
 }) {
-  const featured = writing.filter((piece) => piece.featured).slice(0, 6)
+  const featured = writing.filter((piece) => piece.featured).slice(0, 9)
 
   return (
     <Section bordered>
