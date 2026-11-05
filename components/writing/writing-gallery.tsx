@@ -115,7 +115,7 @@ export function WritingGallery({
       ) : (
         <motion.ul
           layout={!reduceMotion}
-          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-2 gap-3 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           <AnimatePresence
             mode="popLayout"
@@ -144,8 +144,9 @@ export function WritingGallery({
                   duration: 0.28,
                   ease: [0.16, 1, 0.3, 1],
                 }}
+                className="min-w-0"
               >
-                <WritingCard piece={piece} />
+                <WritingCard piece={piece} compact />
               </motion.li>
             ))}
           </AnimatePresence>
