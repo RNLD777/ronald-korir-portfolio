@@ -18,8 +18,10 @@ function getNotionImageUrl(blockId: string) {
   return `/api/notion-image?blockId=${encodeURIComponent(blockId)}`;
 }
 
-async function getFirstQuote(pageId: string) {
+async function getFirstImageAndQuote(pageId: string) {
   let cursor: string | undefined = undefined;
+  let image = "/placeholder.jpg";
+  let quote: string | undefined;
 
   do {
     const response = await notion.blocks.children.list({
@@ -29,53 +31,34 @@ async function getFirstQuote(pageId: string) {
     });
 
     for (const block of response.results as any[]) {
-      const type = block.type;
-      if (!["paragraph", "quote", "bulleted_list_item", "numbered_list_item"].includes(type)) continue;
-      const text = (block[type]?.rich_text ?? []).map((part: any) => part.plain_text ?? "").join("").trim();
-      if (text.length > 35) {
-        const firstSentence = text.match(/^.{1,280}?(?:[.!?](?=\s|$)|$)/)?.[0]?.trim();
-        return firstSentence || text.slice(0, 220).trim();
+      if (block.type === "image" && image === "/placeholder.jpg") {
+        if (block.image.type === "external") {
+          image = block.image.external.url;
+        } else if (block.image.type === "file") {
+          image = getNotionImageUrl(block.id);
+        }
       }
+
+      if (!quote && ["paragraph", "quote", "bulleted_list_item", "numbered_list_item"].includes(block.type)) {
+        const text = (block[block.type]?.rich_text ?? [])
+          .map((part: any) => part.plain_text ?? "")
+          .join("")
+          .trim();
+
+        if (text.length > 35) {
+          quote = text.match(/^.{1,280}?(?:[.!?](?=\\s|$)|$)/)?.[0]?.trim()
+            || text.slice(0, 220).trim();
+        }
+      }
+
+      if (image !== "/placeholder.jpg" && quote) break;
     }
 
-    cursor = response.has_more ? response.next_cursor ?? undefined : undefined;
+    if ((image !== "/placeholder.jpg" && quote) || !response.has_more) break;
+    cursor = response.next_cursor ?? undefined;
   } while (cursor);
 
-  return undefined;
-}
-
-async function getFirstImage(pageId: string) {
-  let cursor: string | undefined = undefined;
-
-  do {
-    const response = await notion.blocks.children.list({
-      block_id: pageId,
-      page_size: 100,
-      start_cursor: cursor,
-    });
-
-    const image = response.results.find(
-      (block: any) => block.type === "image"
-    ) as any;
-
-    if (image) {
-      if (image.image.type === "external") {
-        return image.image.external.url;
-      }
-
-      if (image.image.type === "file") {
-        return getNotionImageUrl(image.id);
-      }
-
-      return "/placeholder.jpg";
-    }
-
-    cursor = response.has_more
-      ? response.next_cursor ?? undefined
-      : undefined;
-  } while (cursor);
-
-  return "/placeholder.jpg";
+  return { image, quote };
 }
 
 async function fetchWriting() {
@@ -147,7 +130,7 @@ async function fetchMindbook() {
       continue;
     }
 
-    const [image, quote] = await Promise.all([getFirstImage(page.id), getFirstQuote(page.id)]);
+    const { image, quote } = await getFirstImageAndQuote(page.id);
     article.image = image;
 
     selected.set(article.category, {
