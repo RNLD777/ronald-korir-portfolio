@@ -32,6 +32,28 @@ function propsToKeywords(property: any): string[] {
   );
 }
 
+function getCardSummary(property: any): string {
+  const summary = property?.rich_text
+    ?.map((part: { plain_text?: string }) => part.plain_text ?? "")
+    .join(" ")
+    .replace(/\\s+/g, " ")
+    .trim() ?? "";
+
+  if (!summary) return "";
+
+  // Keep card copy short enough to read without an awkward mid-sentence cutoff.
+  const firstSentence = summary.match(/^.{1,500}?[.!?](?:\\s|$)/)?.[0]?.trim() ?? summary;
+  const words = firstSentence.split(" ");
+  const concise = words.slice(0, 13).join(" ");
+
+  if (concise.length <= 88 && words.length <= 13) return concise;
+  const clipped = concise.length > 88
+    ? concise.slice(0, 88).replace(/\\s+\\S*$/, "")
+    : concise;
+
+  return `${clipped.replace(/[.,;:!?]+$/, "")}…`;
+}
+
 export function mapWriting(page: any): WritingPiece {
   const props = page.properties;
 
@@ -55,7 +77,7 @@ export function mapWriting(page: any): WritingPiece {
       ? `${props["Reading time (min)"].number} min`
       : "",
 
-    excerpt: props.Summary?.rich_text?.[0]?.plain_text ?? "",
+    excerpt: getCardSummary(props.Summary),
 
     href: props.Link?.url ?? page.public_url,
 
