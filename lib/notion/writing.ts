@@ -33,7 +33,7 @@ async function getFirstQuote(pageId: string) {
       if (!["paragraph", "quote", "bulleted_list_item", "numbered_list_item"].includes(type)) continue;
       const text = (block[type]?.rich_text ?? []).map((part: any) => part.plain_text ?? "").join("").trim();
       if (text.length > 35) {
-        const firstSentence = text.match(/^.{1,280}?(?:[.!?](?=\\s|$)|$)/)?.[0]?.trim();
+        const firstSentence = text.match(/^.{1,280}?(?:[.!?](?=\s|$)|$)/)?.[0]?.trim();
         return firstSentence || text.slice(0, 220).trim();
       }
     }
