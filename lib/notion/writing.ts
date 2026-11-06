@@ -183,7 +183,7 @@ export const getMindbook = unstable_cache(
   async () => {
     return fetchMindbook();
   },
-  ["mindbook"],
+  ["mindbook-v2"],
   {
     revalidate: 86400,
   }
