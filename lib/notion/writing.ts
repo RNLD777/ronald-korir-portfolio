@@ -140,14 +140,17 @@ async function fetchMindbook() {
     }
   }
 
-  const selected = await Promise.all(
-    Array.from(selectedBySlug.values()).map(async ({ page, article, mindbookDate }) => ({
+  const selected = [];
+
+  // Fetch images sequentially to avoid bursting the Notion API during builds.
+  for (const { page, article, mindbookDate } of selectedBySlug.values()) {
+    selected.push({
       ...article,
       image: await getFirstImage(page.id),
       mindbookDate,
       quote: CURATED_QUOTES[article.title],
-    }))
-  );
+    });
+  }
 
   return selected.sort((a, b) => {
     return (
