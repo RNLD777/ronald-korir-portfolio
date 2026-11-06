@@ -16,7 +16,8 @@ function Rule() {
 export function MindbookNewspaper({ writing }: { writing: Entry[] }) {
   const entries = [...writing].sort((a, b) => new Date(b.mindbookDate ?? 0).getTime() - new Date(a.mindbookDate ?? 0).getTime())
   const lead = entries.find((entry) => entry.featured) ?? entries[0]
-  const quotes = entries.filter((entry) => entry.quote)
+  const quoteCategories = ['Marketing & Strategy', 'Analysis & Commentary', 'Creative Writing']
+  const quotes = entries.filter((entry) => entry.quote && quoteCategories.includes(entry.category))
 
   return (
     <main className="mx-auto w-full max-w-7xl px-3 pb-20 pt-8 sm:px-6 lg:px-8">
@@ -67,8 +68,8 @@ export function MindbookNewspaper({ writing }: { writing: Entry[] }) {
 
         <section className="border-b border-[#918572] px-5 py-7 sm:px-9 sm:py-9">
           <div className="flex items-center gap-2 text-[#8a4f36]"><QuoteIcon className="size-4" /><p className="text-[9px] font-bold uppercase tracking-[0.2em]">Words that stayed · From the pages</p></div>
-          <h2 className="mt-2 font-serif text-3xl tracking-[-0.03em] sm:text-4xl">A few lines, a little evidence.</h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-[#62594c]">Fragments pulled from the writing itself — glimpses of the questions, instincts and voice behind the work.</p>
+          <h2 className="mt-2 font-serif text-3xl tracking-[-0.03em] sm:text-4xl">Lines worth keeping.</h2>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-[#62594c]">Selected passages from the analysis, marketing and creative work — chosen because they carry an idea, reveal a point of view or say something worth sitting with.</p>
           {quotes.length ? <div className="mt-6 grid gap-0 md:grid-cols-2">{quotes.map((entry) => <figure key={entry.slug} className="border-t border-[#918572] py-5 md:px-5 md:odd:border-r md:odd:pl-0 md:even:pr-0"><blockquote className="font-serif text-2xl leading-[1.18] sm:text-3xl">“{entry.quote}”</blockquote><figcaption className="mt-4 flex flex-wrap items-center justify-between gap-2 text-[9px] uppercase tracking-[0.12em] text-[#756b5c]"><span>{entry.title} · {entry.category}</span><Link href={entry.href} className="inline-flex items-center gap-1 font-bold text-[#8a4f36] hover:underline">Read piece <ArrowUpRightIcon className="size-3" /></Link></figcaption></figure>)}</div> : <p className="mt-6 border-y border-[#918572] py-6 font-serif text-lg italic text-[#756b5c]">Original excerpts will appear here as full-text passages are available from the archive.</p>}
         </section>
 
