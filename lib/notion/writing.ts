@@ -18,6 +18,32 @@ function getNotionImageUrl(blockId: string) {
   return `/api/notion-image?blockId=${encodeURIComponent(blockId)}`;
 }
 
+async function getFirstQuote(pageId: string) {
+  let cursor: string | undefined = undefined;
+
+  do {
+    const response = await notion.blocks.children.list({
+      block_id: pageId,
+      page_size: 100,
+      start_cursor: cursor,
+    });
+
+    for (const block of response.results as any[]) {
+      const type = block.type;
+      if (!["paragraph", "quote", "bulleted_list_item", "numbered_list_item"].includes(type)) continue;
+      const text = (block[type]?.rich_text ?? []).map((part: any) => part.plain_text ?? "").join("").trim();
+      if (text.length > 35) {
+        const firstSentence = text.match(/^.{1,280}?(?:[.!?](?=\\s|$)|$)/)?.[0]?.trim();
+        return firstSentence || text.slice(0, 220).trim();
+      }
+    }
+
+    cursor = response.has_more ? response.next_cursor ?? undefined : undefined;
+  } while (cursor);
+
+  return undefined;
+}
+
 async function getFirstImage(pageId: string) {
   let cursor: string | undefined = undefined;
 
@@ -121,11 +147,13 @@ async function fetchMindbook() {
       continue;
     }
 
-    article.image = await getFirstImage(page.id);
+    const [image, quote] = await Promise.all([getFirstImage(page.id), getFirstQuote(page.id)]);
+    article.image = image;
 
     selected.set(article.category, {
       ...article,
       mindbookDate,
+      quote,
     });
 
     if (selected.size === MINDBOOK_CATEGORIES.length) {
